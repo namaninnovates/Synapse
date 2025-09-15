@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useAuth } from "@/hooks/use-auth";
 import { api } from "@/convex/_generated/api";
 import { motion } from "framer-motion";
-import { ArrowRight, Briefcase, DollarSign, Play, TrendingDown, TrendingUp, Minus } from "lucide-react";
+import { Briefcase, DollarSign, Play, TrendingDown, TrendingUp, Minus } from "lucide-react";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import { useQuery, useMutation } from "convex/react";
