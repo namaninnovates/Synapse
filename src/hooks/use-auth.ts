@@ -1,23 +1,30 @@
-import { api } from "@/convex/_generated/api";
-import { useAuthActions } from "@convex-dev/auth/react";
-import { useConvexAuth, useQuery } from "convex/react";
-
+// src/hooks/use-auth.ts
 import { useEffect, useState } from "react";
 
 export function useAuth() {
-  const { isLoading: isAuthLoading, isAuthenticated } = useConvexAuth();
-  const user = useQuery(api.users.currentUser);
-  const { signIn, signOut } = useAuthActions();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // Assume logged in
+  const [user, setUser] = useState<{ id: string; name: string } | null>({
+    id: "demo-user",
+    name: "Amardeep",
+  });
 
-  const [isLoading, setIsLoading] = useState(true);
-
-  // This effect updates the loading state once auth is loaded and user data is available
-  // It ensures we only show content when both authentication state and user data are ready
   useEffect(() => {
-    if (!isAuthLoading && user !== undefined) {
-      setIsLoading(false);
-    }
-  }, [isAuthLoading, user]);
+    // In future: fetch real auth status from backend
+    // For now: mock auth is always ready
+    setIsLoading(false);
+  }, []);
+
+  function signIn() {
+    // TODO: Hook up to backend /auth later
+    setIsAuthenticated(true);
+    setUser({ id: "demo-user", name: "Amardeep" });
+  }
+
+  function signOut() {
+    setIsAuthenticated(false);
+    setUser(null);
+  }
 
   return {
     isLoading,
